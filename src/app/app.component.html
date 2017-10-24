@@ -17,15 +17,15 @@
 </head>
 
 <body>
-  तपाइको अंचल छानुहोस:
-  <select name="selectedzone" class="form-control" [(ngModel)]="selectedzone" >
-    <option disabled selected>तपाइको अंचल छानुहोस:</option>
-    <option *ngFor="let zone of zones" value="{{zone.zone}}" (change)="onSelect()">{{zone.zone}}</option>
+  <h6>तपाइको अंचल छानुहोस:</h6>
+  <select name="selectedzone" class="form-control" [compareWith]="compareZone" [(ngModel)]="selectedzone">
+    <option *ngFor="let zone of zones" [ngValue]="zone">{{zone.zone}}</option>
   </select>
+
   <div *ngIf="selectedzone">
-    <h2>तपाइको जिल्ला छानुहोस</h2>
+    <h6>तपाइको जिल्ला छानुहोस</h6>
     <select name="district" class="form-control">
-      <option *ngFor="let district of zones.districts" value="{{district}}">{{district}}</option>
+      <option *ngFor="let district of selectedzone.districts" [ngValue]="district">{{district}}</option>
     </select>
   </div>
 </body>

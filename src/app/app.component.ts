@@ -12,13 +12,15 @@ import { zoneList } from './zone/zonelist';
 export class AppComponent implements OnInit{
   users: User[];
   zones:Zone[];
-  selectedzone:Zone;
+  selectedzone:Zone = new Zone();
   constructor(
   ){}
   ngOnInit() {
+    
     this.getZones();
+    this.selectedzone =  this.zones[0];
     this.getUsers();
-    console.log(this.zones);
+    //console.log(this.selectedzone);
     
   }
   getUsers():void{
@@ -27,9 +29,10 @@ export class AppComponent implements OnInit{
   getZones():void{
     this.zones=zoneList;
   }
+  
 
-  onSelect(){
-    console.log(this.selectedzone);
-
+  compareZone(obj1:Zone,obj2:Zone){
+    if(obj2 == null)return false;
+    return obj1.zone === obj2.zone;
   }
 }
